@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { MantineProvider } from "@mantine/core";
+import Navbar from "../components/navigation/navbar"; // Import Navbar
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +26,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <MantineProvider>
+          {/* Fixed Navbar at the top */}
+          <div className="w-full flex justify-center fixed top-0 left-0 z-50 bg-transparent pt-[15px]">
+            <Navbar />
+          </div>
+          <div className="min-h-screen flex flex-col pt-[70px]">
+            <main className="flex-1">{children}</main>
+          </div>
+        </MantineProvider>
       </body>
     </html>
   );
