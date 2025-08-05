@@ -1,10 +1,9 @@
 "use client";
+
 import React from "react";
 import NavbarContainer from "./navbarContainer";
-import { Anchor } from "@mantine/core";
+import { Anchor, Group } from "@mantine/core";
 import { usePathname } from "next/navigation";
-import { GoHomeFill } from "react-icons/go";
-
 
 const links = [
   { label: "Home", href: "/" },
@@ -18,25 +17,30 @@ const Navbar: React.FC = () => {
 
   return (
     <NavbarContainer>
-      {links.map((link) => (
-        <Anchor
-          key={link.href}
-          href={link.href}
-          underline="never"
-          size="md"
-          style={{
-            borderRadius: "999px",
-            padding: "8px 16px",
-            fontWeight: pathname === link.href ? "bold" : "normal",
-            color: pathname === link.href ?  "#aa00ff": "#111",
-          }}
-        >
-          {link.label}
-        </Anchor>
-      ))}
+      <Group justify="space-between" style={{ width: "100%" }}>
+        <Group gap="sm">
+          {links.map((link) => (
+            <Anchor
+              key={link.href}
+              href={link.href}
+              underline="never"
+              size="md"
+              style={{
+                borderRadius: "999px",
+                padding: "8px 16px",
+                fontWeight: pathname === link.href ? "bold" : "normal",
+                color: pathname === link.href ? "var(--primary)" : "var(--text)",
+              }}
+            >
+              {link.label}
+            </Anchor>
+          ))}
+        </Group>
+
+      
+      </Group>
     </NavbarContainer>
   );
 };
 
 export default Navbar;
-//

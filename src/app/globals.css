@@ -1,35 +1,70 @@
 @import "tailwindcss";
 
+/* === Default Light Theme === */
 :root {
-  --background: #796868;
-  --foreground: #171717;
+  --text: #0a010c;
+  --background: #fdf5fe;
+  --primary: #dc2aee;
+  --secondary: #f57fb2;
+  --accent: #f1486c;
 }
 
+/* === Dark Mode Overrides === */
+.dark {
+  --color: #ffffff;
+  --background: #080109;
+  --primary: #c111d4;
+  --secondary: #800a3d;
+  --accent: #b90e33;
+}
+
+/* === Tailwind Theme Variables (Optional) === */
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-foreground: var(--text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* === Base Styles === */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* === Glass Navbar Pill === */
 .navbar-pill {
   display: inline-flex;
   align-items: center;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   padding: 8px 24px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.25);
   border-radius: 999px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* === Color Toggle Button === */
+.color-toggle-button {
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(6px);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.color-toggle-shadow {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.color-toggle-button:hover.color-toggle-shadow {
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
