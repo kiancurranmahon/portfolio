@@ -1,21 +1,31 @@
 @import "tailwindcss";
 
-/* === Default Light Theme === */
-:root {
-  --text: #0a010c;
-  --background: #fdf5fe;
-  --primary: #dc2aee;
-  --secondary: #f57fb2;
-  --accent: #f1486c;
-}
+@layer base {
+  /* === Default Light Theme === */
+  :root {
+    --text: #140012;
+    --background: #fff0fc;
+    --primary: #fb18d6;
+    --secondary: #fd81b5;
+    --accent: #fc4573;
 
-/* === Dark Mode Overrides === */
-.dark {
-  --color: #ffffff;
-  --background: #080109;
-  --primary: #c111d4;
-  --secondary: #800a3d;
-  --accent: #b90e33;
+    --gradient-start: #f3e8fb; /* very soft pastel purple */
+    --gradient-mid: #f7d7de;   /* soft pastel pink */
+    --gradient-end: #f8d0d4;   /* soft pastel coral */
+  }
+
+  /* === Dark Mode Overrides === */
+  .dark {
+    --text: #ffebfd;
+    --background: #0f000c;
+    --primary: #e704c1;
+    --secondary: #7e0235;
+    --accent: #ba0331;
+
+--gradient-start: #9c7ba3; /* darker muted purple */
+--gradient-mid: #a67d80;   /* darker muted pink */
+--gradient-end: #a6786f;   /* darker muted coral */
+  }
 }
 
 /* === Tailwind Theme Variables (Optional) === */
@@ -28,10 +38,18 @@
 
 /* === Base Styles === */
 body {
+  background-image: linear-gradient(
+    135deg,
+    var(--gradient-start),
+    var(--gradient-mid),
+    var(--gradient-end)
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
   background-color: var(--background);
   color: var(--text);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, background-image 0.3s ease;
 }
 
 /* === Glass Navbar Pill === */
@@ -49,6 +67,7 @@ body {
 /* === Shared Icon Button Styles === */
 .icon-button {
   background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(6px);
   border-radius: 0.75rem; /* 12px */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -57,7 +76,6 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: none;
   cursor: pointer;
   color: var(--text);
   text-decoration: none; /* For link elements */

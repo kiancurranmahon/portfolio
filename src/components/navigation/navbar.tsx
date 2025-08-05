@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
               style={{
                 borderRadius: "999px",
                 padding: "8px 16px",
-                fontWeight: pathname === link.href ? "bold" : "normal",
+                fontWeight:  "normal",
                 color: pathname === link.href ? "var(--primary)" : "var(--text)",
               }}
             >

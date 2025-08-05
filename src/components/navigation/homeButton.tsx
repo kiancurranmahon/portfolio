@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { HomeIcon } from "@radix-ui/react-icons";
+import { GoHome, GoHomeFill } from "react-icons/go";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 
@@ -24,7 +24,11 @@ export default function HomeButton() {
       aria-label="Home"
       className={clsx("icon-button", { active: isActive })}
     >
-      <HomeIcon style={{ width: 20, height: 20 }} />
+      {isActive ? (
+        <GoHomeFill style={{ width: 20, height: 20 }} />
+      ) : (
+        <GoHome style={{ width: 20, height: 20 }} />
+      )}
     </Link>
   );
 }
