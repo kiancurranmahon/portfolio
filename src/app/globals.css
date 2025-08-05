@@ -46,25 +46,28 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* === Color Toggle Button === */
-.color-toggle-button {
+/* === Shared Icon Button Styles === */
+.icon-button {
   background-color: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(6px);
-  border-radius: 0.75rem;
+  border-radius: 0.75rem; /* 12px */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   padding: 8px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   border: none;
+  cursor: pointer;
+  color: var(--text);
+  text-decoration: none; /* For link elements */
 }
 
-.color-toggle-shadow {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.color-toggle-button:hover.color-toggle-shadow {
+.icon-button:hover {
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.icon-button.active {
+  color: var(--primary);
 }

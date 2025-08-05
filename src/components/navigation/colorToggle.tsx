@@ -17,13 +17,13 @@ export default function ColorToggle() {
   return (
     <button
       onClick={handleClick}
-      className={`color-toggle-button ${!isAnimating ? "color-toggle-shadow" : ""}`}
+      className={`icon-button ${!isAnimating ? "color-toggle-shadow" : ""}`}
       style={{
         transform: isAnimating ? "rotate(180deg)" : "rotate(0deg)",
         opacity: isAnimating ? 0.5 : 1,
       }}
     >
-      <SunIcon />
+      <SunIcon style={{ width: 20, height: 20 }} />
     </button>
   );
 }
