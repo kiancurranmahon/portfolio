@@ -7,20 +7,28 @@ type ColorScheme = "light" | "dark";
 interface ColorSchemeContextType {
   colorScheme: ColorScheme;
   toggleColorScheme: () => void;
+  mounted: boolean;
 }
 
 const ColorSchemeContext = createContext<ColorSchemeContextType | undefined>(undefined);
 
 export const ColorSchemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
+  const [mounted, setMounted] = useState(false);
 
-  // Optional: persist in localStorage
   useEffect(() => {
-    const saved = localStorage.getItem("color-scheme");
+    const saved = localStorage.getItem("color-scheme") as ColorScheme | null;
+
     if (saved === "light" || saved === "dark") {
       setColorScheme(saved);
       document.documentElement.classList.toggle("dark", saved === "dark");
+    } else {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      setColorScheme(prefersDark ? "dark" : "light");
+      document.documentElement.classList.toggle("dark", prefersDark);
     }
+
+    setMounted(true);
   }, []);
 
   const toggleColorScheme = () => {
@@ -32,8 +40,12 @@ export const ColorSchemeProvider = ({ children }: { children: React.ReactNode })
     });
   };
 
+  if (!mounted) {
+    return null;
+  }
+
   return (
-    <ColorSchemeContext.Provider value={{ colorScheme, toggleColorScheme }}>
+    <ColorSchemeContext.Provider value={{ colorScheme, toggleColorScheme, mounted }}>
       {children}
     </ColorSchemeContext.Provider>
   );

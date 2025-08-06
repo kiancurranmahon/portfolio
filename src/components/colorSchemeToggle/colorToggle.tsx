@@ -1,8 +1,9 @@
 "use client";
 
 import { RiMoonClearFill, RiSunFill } from "react-icons/ri";
-import { useState } from "react";
-import { useColorScheme } from "@/providers/colorSchemeProvider"; // adjust path as needed
+import { useState, useEffect } from "react";
+import { useColorScheme } from "@/providers/colorSchemeProvider"; 
+import { setCurrentColorScheme } from "./colorStore"; 
 import clsx from "clsx";
 
 export default function ColorToggle() {
@@ -18,6 +19,10 @@ export default function ColorToggle() {
   };
 
   const isDark = colorScheme === "dark";
+
+  useEffect(() => {
+    setCurrentColorScheme(colorScheme);
+  }, [colorScheme]);
 
   return (
     <button
